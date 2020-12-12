@@ -1,66 +1,53 @@
-import React from 'react'
-import {
-  Typography,
-  AppBar,
-  Toolbar,
-  Button
-} from '@material-ui/core';
-import withStyles from '@material-ui/core/styles/withStyles'
+import React from "react";
+import { AppBar, Toolbar, Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
 
-// import axios from 'axios'
-
-const styles = theme => ({
-  theme: {
-    fontFamily: 'Montserrat'
-  },
+const useStyles = makeStyles((theme) => ({
   title: {
-    flexGrow: 1,
+    fontSize: 22,
     fontWeight: 700,
-    fontFamily: 'Montserrat',
-    letterSpacing: 3
-  },
-  home: {
-    fontWeight: 700,
-    fontFamily: 'Montserrat',
     letterSpacing: 3,
-    color: 'white',
-    textDecoration: 'none'
+    color: "white",
+    textDecoration: "none",
   },
   button: {
-    backgroundColor: '#493CE1',
-    textTransform: 'none',
-    fontSize: '1rem',
-    fontFamily: 'Montserrat',
+    backgroundColor: "#493CE1",
+    textTransform: "none",
+    fontSize: "1rem",
+    fontFamily: "Montserrat",
     fontWeight: 700,
-    color: 'white',
-    width: '150px',
-    '&:hover': {
-      backgroundColor: '#342B9B',
-      boxShadow: 'none',
+    color: "white",
+    width: "150px",
+    "&:hover": {
+      backgroundColor: "#342B9B",
+      boxShadow: "none",
     },
+    marginLeft: "auto",
   },
   appbar: {
-    background: 'linear-gradient(45deg, #493CE1 30%, #0CE3BD 80%)',
+    background: "linear-gradient(45deg, #493CE1 30%, #0CE3BD 80%)",
+    display: "flex",
   },
-});
+}));
 
-const TopBar = props => {
-  const { classes } = props
+const TopBar = () => {
+  const classes = useStyles();
+
   return (
     <div>
-      <AppBar position="static">
-        <Toolbar className={classes.appbar}>
-          <Typography className={classes.title} variant="h5" noWrap>
-            <Link className={classes.home} to={'/homefeed'} >homefeed</Link>
-          </Typography>
-          <Button className={classes.button} size='small'>
+      <AppBar className={classes.appbar} position="static">
+        <Toolbar>
+          <Link className={classes.title} to={"/homefeed"}>
+            homefeed
+          </Link>
+          <Button className={classes.button} size="small">
             logout
           </Button>
         </Toolbar>
       </AppBar>
     </div>
-  )
-}
+  );
+};
 
-export default withStyles(styles)(TopBar);
+export default TopBar;
